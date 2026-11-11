@@ -12,7 +12,7 @@ Redirect the command's output to `results/job-history.txt` and include the file 
 
 **Your answer:** Provide the entire command you used, including all CLI options.
 
-...
+sacct -S 2026-11-04 -X --format=JobID,JobName,Partition,State,ExitCode,Start,End,Elapsed > results/job-history.txt
 
 ## 2. Slurm: did every array task run at the same time?
 
@@ -24,7 +24,7 @@ You submitted your entire job array with one `sbatch` command, but Slurm schedul
 
 **Your answer:** Did all tasks in the array start at the same time? Was the elapsed time identical for every task? Explain why or why not.
 
-...
+No, the tasks did not begin at the same time. Instead, the tasks ran in waves of two, but the elapsed time to complete each individual task was fairly similiar. It seems that the tasks were able to only run two at a time because it was what Slurm had freed up.  
 
 ## 3. Slurm: did my job use what it asked for?
 
@@ -36,5 +36,5 @@ Suppose your next job array has 1,000 books instead of 101. Before you submit it
 
 **Your answer:** How much memory and time did the task use, compared with what your script asked for? What would you change in your script, and why?
 
-...
+The task used 15 seconds of the 5 minutes requested, which is around 5%, and 1.49 GB of the 16 GB requested in memory, around 9%. The memory limit can be reduced, as the memory requested but is not used is holding back from other jobs on that node.
 
